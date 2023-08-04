@@ -25,9 +25,9 @@ class ProductListViewModel: BaseViewModel {
         self.progress = true
         productListRepository.getCollection(start: start + 1, count: count) { result in
             self.progress = false
-            self.tempArtObjects.append(contentsOf: result.artObjects)
+            self.tempArtObjects.append(contentsOf: result.artObjects ?? [])
             self.artObjects = self.tempArtObjects
-            self.total = result.count
+            self.total = result.count ?? 0
             self.start = self.start + 1
         } failure: { error in
             self.progress = false

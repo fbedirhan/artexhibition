@@ -9,8 +9,8 @@ import Foundation
 
 // MARK: - ProductDetailResponse
 struct ProductDetailResponse: Codable {
-    let elapsedMilliseconds: Int
-    let artObject: ArtObjectDetail
+    let elapsedMilliseconds: Int?
+    let artObject: ArtObjectDetail?
 }
 
 // MARK: - ArtObject
@@ -52,26 +52,26 @@ struct Color: Codable {
 
 // MARK: - ColorsWithNormalization
 struct ColorsWithNormalization: Codable {
-    let originalHex, normalizedHex: String
+    let originalHex, normalizedHex: String?
 }
 
 // MARK: - Dating
 struct Dating: Codable {
-    let presentingDate: String
-    let sortingDate, period, yearEarly, yearLate: Int
+    let presentingDate: String?
+    let sortingDate, period, yearEarly, yearLate: Int?
 }
 
 // MARK: - Links
 struct LinksDetail: Codable {
-    let search: String
+    let search: String?
 }
 
 
 // MARK: - WebImage
 struct WebImage: Codable {
-    let guid: String
-    let offsetPercentageX, offsetPercentageY, width, height: Int
-    let url: String
+    let guid: String?
+    let offsetPercentageX, offsetPercentageY, width, height: Int?
+    let url: String?
 }
 
 

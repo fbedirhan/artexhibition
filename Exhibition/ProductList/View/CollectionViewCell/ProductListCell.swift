@@ -54,7 +54,7 @@ class ProductListCell: UICollectionViewCell {
 
     /// Function to configure the cell with product data
     func set(item: ArtObject?) {
-        if let url = item?.headerImage.url {
+        if let url = item?.headerImage?.url {
             artObjectImageView.load(url: url)
         }
         artObjetTitleLabel.text = item?.title
