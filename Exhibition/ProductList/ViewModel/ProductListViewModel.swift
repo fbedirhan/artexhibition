@@ -30,6 +30,7 @@ class ProductListViewModel: BaseViewModel {
             self.total = result.count
             self.start = self.start + 1
         } failure: { error in
+            self.progress = false
             self.error = error
         }
     }
