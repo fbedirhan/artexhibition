@@ -10,15 +10,18 @@ import XCTest
 
 final class ProductDetailRepositoryTest: XCTestCase {
 
+    var apiManager: Networkable!
     var repo: ProductDetailRepositoryProtocol!
-    
+
     override func setUp() {
         super.setUp()
-        repo = ProductDetailRepository()
+        apiManager = APIManager()
+        repo = ProductDetailRepository(apiManager: apiManager)
     }
 
     override func tearDown() {
         super.tearDown()
+        apiManager = nil
         repo = nil
     }
     
@@ -26,7 +29,7 @@ final class ProductDetailRepositoryTest: XCTestCase {
         let expectation = XCTestExpectation(description: "Async Product Detail Call")
         let artObjectId = "BK-17040-A"
         repo.getCollectionDetail(id: artObjectId) { result in
-            XCTAssertEqual(artObjectId, result.artObject.objectNumber, "Object numbers are same")
+            XCTAssertEqual(artObjectId, result.artObject?.objectNumber, "Object numbers are same")
             expectation.fulfill()
         } failure: { result in
             expectation.fulfill()
@@ -40,7 +43,7 @@ final class ProductDetailRepositoryTest: XCTestCase {
         let artObjectId = "test1234"
 
         repo.getCollectionDetail(id: artObjectId) { result in
-            XCTAssertEqual(artObjectId, result.artObject.objectNumber, "Object numbers are same")
+            XCTAssertEqual(artObjectId, result.artObject?.objectNumber, "Object numbers are same")
             expectation.fulfill()
         } failure: { result in
             XCTAssertNotNil(result)

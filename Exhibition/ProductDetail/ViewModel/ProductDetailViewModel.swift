@@ -12,7 +12,7 @@ class ProductDetailViewModel: BaseViewModel {
     private var productListRepository: ProductDetailRepositoryProtocol
     @Published var artObjectDetail: ArtObjectDetail?
     
-    init(repo: ProductDetailRepository = ProductDetailRepository()) {
+    init(repo: ProductDetailRepositoryProtocol) {
         self.productListRepository = repo
     }
     

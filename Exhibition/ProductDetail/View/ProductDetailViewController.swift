@@ -16,8 +16,8 @@ class ProductDetailViewController: BaseViewController {
     let artObjectMaker = UILabel()
     let productDescriptionLabel = UILabel()
     let artObjectImageView = UIImageView()
+    var viewModel: ProductDetailViewModel
     
-    private var viewModel  = ProductDetailViewModel()
     private var anyCancellable = Set<AnyCancellable>()
     var artObjectId: String? = nil
     
@@ -27,8 +27,17 @@ class ProductDetailViewController: BaseViewController {
         }
     }
     
-    class func get(artObjectId: String? = nil) -> ProductDetailViewController {
-        let controller = ProductDetailViewController()
+    init(viewModel: ProductDetailViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    class func get(artObjectId: String? = nil, viewModel: ProductDetailViewModel) -> ProductDetailViewController {
+        let controller = ProductDetailViewController(viewModel: viewModel)
         controller.artObjectId = artObjectId
         return controller
     }

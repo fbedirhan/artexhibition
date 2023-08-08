@@ -15,9 +15,9 @@ protocol ProductDetailRepositoryProtocol {
 
 class ProductDetailRepository: ProductDetailRepositoryProtocol {
     
-    private var apiManager: APIManager
+    private var apiManager: Networkable
     
-    init(apiManager: APIManager = APIManager()) {
+    init(apiManager: Networkable) {
         self.apiManager = apiManager
     }
     

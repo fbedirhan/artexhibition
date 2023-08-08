@@ -17,7 +17,7 @@ class ProductListViewModel: BaseViewModel {
     var total = 0
     var artObjectLimit = 10000
     
-    init(repo: ProductListRepository = ProductListRepository()) {
+    init(repo: ProductListRepositoryProtocol) {
         self.productListRepository = repo
     }
     

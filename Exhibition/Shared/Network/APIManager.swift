@@ -10,6 +10,7 @@ import Foundation
 
 protocol Networkable {
     var provider: MoyaProvider<Services> { get }
+    func request<T: Decodable>(target: Services, success: @escaping Callback<T>, failure: @escaping CallbackError)
 }
 
 class APIManager: Networkable {

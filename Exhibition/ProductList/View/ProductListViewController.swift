@@ -11,7 +11,7 @@ import Combine
 class ProductListViewController: BaseViewController {
     
     var collectionView: UICollectionView!
-    private var viewModel  = ProductListViewModel()
+    private var viewModel: ProductListViewModel
     private var anyCancellable = Set<AnyCancellable>()
     private var adapter: ProductListAdapter?
     
@@ -20,6 +20,15 @@ class ProductListViewController: BaseViewController {
             self.adapter?.items = data
             self.collectionView.reloadData()
         }
+    }
+    
+    init(viewModel: ProductListViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -84,7 +93,10 @@ class ProductListViewController: BaseViewController {
 extension ProductListViewController: ProductListDelegate {
     
     func selectItem(item: ArtObject?) {
-        let vc = ProductDetailViewController.get(artObjectId: item?.objectNumber)
+        let apiManager = APIManager()
+        let repo = ProductDetailRepository(apiManager: apiManager)
+        let vm = ProductDetailViewModel(repo: repo)
+        let vc = ProductDetailViewController.get(artObjectId: item?.objectNumber, viewModel: vm)
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

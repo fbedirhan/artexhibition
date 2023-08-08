@@ -11,12 +11,16 @@ import Combine
 
 final class ProductDetailViewModelTest: XCTestCase {
 
+    var apiManager: Networkable!
+    var repo: ProductDetailRepositoryProtocol!
     var viewModel: ProductDetailViewModel!
     var anyCancellable: Set<AnyCancellable>!
     
     override func setUp() {
         super.setUp()
-        viewModel = ProductDetailViewModel()
+        apiManager = APIManager()
+        repo = ProductDetailRepository(apiManager: apiManager)
+        viewModel = ProductDetailViewModel(repo: repo)
         anyCancellable = Set<AnyCancellable>()
     }
 
